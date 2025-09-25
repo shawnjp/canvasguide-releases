@@ -3,7 +3,6 @@
 <head>
     <title>Download CanvasGuide</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -91,15 +90,22 @@
             font-weight: bold;
         }
         
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        h2 { font-size: 1.5rem; margin: 20px 0 10px 0; }
+        h3 { font-size: 1.2rem; margin-bottom: 15px; }
+        
+        p { margin: 10px 0; line-height: 1.5; }
+        
+        /* QR Code Section */
         .qr-section {
-            background: #2a2a2a;
+            background: #1a1a1a;
             padding: 20px;
             border-radius: 12px;
             margin: 20px 0;
-            text-align: center;
+            border: 1px solid #8B5FBF;
         }
         
-        .qr-code {
+        .qr-container {
             margin: 15px auto;
             padding: 10px;
             background: white;
@@ -107,31 +113,17 @@
             display: inline-block;
         }
         
+        .qr-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 4px;
+        }
+        
         .qr-instructions {
             font-size: 14px;
-            color: #ccc;
             margin-top: 10px;
+            color: #ccc;
         }
-        
-        .download-options {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .option-card {
-            background: #2a2a2a;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #8B5FBF;
-        }
-        
-        h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        h2 { font-size: 1.5rem; margin: 20px 0 10px 0; }
-        h3 { font-size: 1.2rem; margin-bottom: 15px; }
-        
-        p { margin: 10px 0; line-height: 1.5; }
         
         /* Mobile-specific styles */
         @media (max-width: 480px) {
@@ -140,16 +132,8 @@
             h1 { font-size: 2rem; }
             .download-btn { padding: 16px 25px; font-size: 16px; }
             .feature { padding: 15px; }
-            .qr-code canvas { width: 150px !important; height: 150px !important; }
-        }
-        
-        @media (min-width: 768px) {
-            .download-options {
-                flex-direction: row;
-            }
-            .option-card {
-                flex: 1;
-            }
+            .qr-section { padding: 15px; }
+            .qr-image { width: 180px; height: 180px; }
         }
     </style>
 </head>
@@ -161,33 +145,31 @@
         <div class="warning">
             <strong>⚠️ Important:</strong> Read installation steps below before downloading
         </div>
-
-        <!-- Download Options -->
-        <div class="download-options">
-            <div class="option-card">
-                <h3>📱 Mobile Download</h3>
-                <a href="https://github.com/shawnjp/canvasguide-releases/releases/download/v1.0.0/CanvasGuide-v1.0.0.apk" 
-                   class="download-btn"
-                   download="CanvasGuide-v1.0.0.apk">
-                    📥 Tap to Download
-                </a>
-                <p><small>Direct download to your phone</small></p>
+        
+        <!-- Download Button -->
+        <a href="https://github.com/shawnjp/canvasguide-releases/releases/download/v1.0.0/CanvasGuide-v1.0.0.apk" 
+           class="download-btn"
+           download="CanvasGuide-v1.0.0.apk">
+            📥 Download APK (v1.0.0)
+        </a>
+        
+        <!-- QR Code Section -->
+        <div class="qr-section">
+            <h3>📱 Scan to Download</h3>
+            <p>Use your phone's camera to scan this QR code and download directly to your device</p>
+            
+            <div class="qr-container">
+                <!-- Your QR Code PNG -->
+                <img src="tjdpoetry-canvasguide.png" alt="Scan to download CanvasGuide" class="qr-image">
             </div>
             
-            <div class="option-card">
-                <h3>💻 Computer Download</h3>
-                <p>Scan QR code to send to your phone</p>
-                <div class="qr-section">
-                    <div id="qrcode" class="qr-code"></div>
-                    <p class="qr-instructions">Point your phone's camera at this code</p>
-                </div>
-            </div>
+            <p class="qr-instructions">Point your phone's camera at the QR code above to open the download link</p>
         </div>
         
         <div class="feature">
             <h3>✨ Features</h3>
             <p><span class="emoji">📷</span>Camera tracing with adjustable opacity</p>
-            <p><span class="emoji">🎯</span>Practice outlines & learning exercises</p>
+            <p><span class="emoji">🎯</span>Import images from your gallery</p>
             <p><span class="emoji">🔒</span>100% offline - zero data collection</p>
             <p><span class="emoji">💝</span>Optional in-app donations</p>
         </div>
@@ -205,7 +187,7 @@
             <div class="step">
                 <span class="step-number">2</span>
                 <strong>Download the APK</strong>
-                <p>Tap the download button above or scan the QR code</p>
+                <p>Tap the download button above or scan the QR code with your phone's camera.</p>
             </div>
             
             <div class="step">
@@ -227,47 +209,14 @@
             </div>
         </div>
 
-        <!-- QR Code Specific Instructions -->
-        <div class="feature">
-            <h3>📲 QR Code Instructions</h3>
-            
-            <div class="step">
-                <span class="step-number">A</span>
-                <strong>Using QR Code</strong>
-                <p>1. Open your phone's camera app</p>
-                <p>2. Point it at the QR code above</p>
-                <p>3. Tap the notification that appears</p>
-                <p>4. Your browser will open with the download</p>
-            </div>
-            
-            <div class="step">
-                <span class="step-number">B</span>
-                <strong>No QR Scanner?</strong>
-                <p>• Download a QR scanner app</p>
-                <p>• Or use the direct download button</p>
-                <p>• Or visit: github.com/shawnjp/canvasguide-releases</p>
-            </div>
-        </div>
-
         <!-- Troubleshooting -->
         <div class="feature">
             <h3>🔧 Troubleshooting</h3>
-            
-            <div class="step">
-                <span class="step-number">!</span>
-                <strong>Browser-Specific Help</strong>
-                <p><strong>Chrome:</strong> Check chrome://downloads/ after tapping download</p>
-                <p><strong>Firefox:</strong> Look in Downloads folder or browser menu</p>
-                <p><strong>Samsung Internet:</strong> Swipe down for notifications → Tap download</p>
-            </div>
-            
-            <div class="step">
-                <span class="step-number">!</span>
-                <strong>Common Issues</strong>
-                <p><strong>Download doesn't start?</strong> Try long-pressing the button</p>
-                <p><strong>Can't find the file?</strong> Check your browser's downloads folder</p>
-                <p><strong>Installation blocked?</strong> Enable "Unknown sources" in Settings</p>
-            </div>
+            <p><strong>Download doesn't start?</strong> Try long-pressing the button and select "Download link"</p>
+            <p><strong>Can't find the file?</strong> Check your browser's downloads folder</p>
+            <p><strong>Installation blocked?</strong> Make sure "Unknown sources" is enabled in Settings</p>
+            <p><strong>QR code not scanning?</strong> Try increasing your screen brightness</p>
+            <p><strong>Need help?</strong> Email: your-email@domain.com</p>
         </div>
         
         <p><small>By TJDPoetry - Built with love, not trackers</small></p>
@@ -281,31 +230,18 @@
     </div>
 
     <script>
-        // Generate QR Code
+        // Mobile-friendly enhancements
         document.addEventListener('DOMContentLoaded', function() {
-            const downloadUrl = 'https://github.com/shawnjp/canvasguide-releases/releases/download/v1.0.0/CanvasGuide-v1.0.0.apk';
-            
-            // Generate QR code
-            QRCode.toCanvas(document.getElementById('qrcode'), downloadUrl, {
-                width: 200,
-                height: 200,
-                colorDark: '#000000',
-                colorLight: '#ffffff',
-                correctLevel: QRCode.CorrectLevel.H
-            }, function(error) {
-                if (error) console.error(error);
+            // Add click tracking for troubleshooting
+            const downloadBtn = document.querySelector('.download-btn');
+            downloadBtn.addEventListener('click', function() {
+                console.log('Download initiated - if this fails, check browser permissions');
             });
             
-            // Mobile detection
+            // Detect mobile devices
             if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 document.body.classList.add('mobile');
             }
-            
-            // Download tracking
-            const downloadBtn = document.querySelector('.download-btn');
-            downloadBtn.addEventListener('click', function() {
-                console.log('Download initiated from button click');
-            });
         });
     </script>
 </body>
