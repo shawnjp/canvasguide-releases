@@ -3,6 +3,8 @@
 <head>
     <title>Download CanvasGuide</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include QR Code library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -96,6 +98,34 @@
         
         p { margin: 10px 0; line-height: 1.5; }
         
+        /* QR Code Section */
+        .qr-section {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid #8B5FBF;
+        }
+        
+        .qr-container {
+            margin: 15px auto;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        
+        #qrcode {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .qr-instructions {
+            font-size: 14px;
+            margin-top: 10px;
+            color: #ccc;
+        }
+        
         /* Mobile-specific styles */
         @media (max-width: 480px) {
             body { padding: 15px; }
@@ -103,6 +133,7 @@
             h1 { font-size: 2rem; }
             .download-btn { padding: 16px 25px; font-size: 16px; }
             .feature { padding: 15px; }
+            .qr-section { padding: 15px; }
         }
     </style>
 </head>
@@ -121,6 +152,18 @@
            download="CanvasGuide-v1.0.0.apk">
             📥 Download APK (v1.0.0)
         </a>
+        
+        <!-- QR Code Section -->
+        <div class="qr-section">
+            <h3>📱 Scan to Download</h3>
+            <p>Use your phone's camera to scan this QR code and download directly to your device</p>
+            
+            <div class="qr-container">
+                <div id="qrcode"></div>
+            </div>
+            
+            <p class="qr-instructions">Point your phone's camera at the QR code above to open the download link</p>
+        </div>
         
         <div class="feature">
             <h3>✨ Features</h3>
@@ -143,7 +186,7 @@
             <div class="step">
                 <span class="step-number">2</span>
                 <strong>Download the APK</strong>
-                <p>Tap the download button above. Your browser will download the file.</p>
+                <p>Tap the download button above or scan the QR code with your phone's camera.</p>
             </div>
             
             <div class="step">
@@ -171,6 +214,7 @@
             <p><strong>Download doesn't start?</strong> Try long-pressing the button and select "Download link"</p>
             <p><strong>Can't find the file?</strong> Check your browser's downloads folder</p>
             <p><strong>Installation blocked?</strong> Make sure "Unknown sources" is enabled in Settings</p>
+            <p><strong>QR code not scanning?</strong> Try increasing your screen brightness</p>
             <p><strong>Need help?</strong> Email: your-email@domain.com</p>
         </div>
         
@@ -191,6 +235,24 @@
             const downloadBtn = document.querySelector('.download-btn');
             downloadBtn.addEventListener('click', function() {
                 console.log('Download initiated - if this fails, check browser permissions');
+            });
+            
+            // Generate QR Code
+            const downloadUrl = "https://github.com/shawnjp/canvasguide-releases/releases/download/v1.0.0/CanvasGuide-v1.0.0.apk";
+            const qrcodeElement = document.getElementById("qrcode");
+            
+            // Generate QR code with the download URL
+            QRCode.toCanvas(qrcodeElement, downloadUrl, {
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            }, function(error) {
+                if (error) {
+                    console.error("QR Code generation error:", error);
+                    qrcodeElement.innerHTML = "<p>Error generating QR code. Please use the download button instead.</p>";
+                }
             });
             
             // Detect mobile devices
