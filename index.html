@@ -4,7 +4,7 @@
     <title>Download CanvasGuide</title>
     <style>
         body { 
-            font-family: Arial; 
+            font-family: Arial, sans-serif; 
             text-align: center; 
             padding: 40px; 
             background: #000; 
@@ -22,31 +22,38 @@
             margin: 20px 0;
             font-size: 20px;
             border: 2px solid #DA219F;
+            transition: transform 0.2s;
         }
-        .info { 
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+        .feature { 
             background: #1a1a1a; 
             padding: 20px; 
             border-radius: 10px; 
             margin: 20px 0;
+            border: 1px solid #8B5FBF;
         }
+        .emoji { font-size: 24px; margin-right: 10px; }
     </style>
 </head>
 <body>
     <h1>🎨 CanvasGuide</h1>
-    <p><em>Download the free drawing assistant</em></p>
+    <p><em>Privacy-First Drawing Assistant</em></p>
     
-    <a href="CanvasGuide-v1.0.0.apk" class="download-btn">
+    <a href="https://github.com/tjdpoetry/canvasguide-releases/releases/download/v1.0.0/CanvasGuide-v1.0.0.apk" 
+       class="download-btn">
         Download APK (v1.0.0)
     </a>
     
-    <div class="info">
-        <h3>About the App</h3>
-        <p>• Camera tracing with adjustable opacity</p>
-        <p>• Practice outlines & learning exercises</p>
-        <p>• 100% offline - zero data collection</p>
-        <p>• Your art stays on your device</p>
+    <div class="feature">
+        <h3>✨ Features</h3>
+        <p><span class="emoji">📷</span>Camera tracing with adjustable opacity</p>
+        <p><span class="emoji">🎯</span>Practice outlines & learning exercises</p>
+        <p><span class="emoji">🔒</span>100% offline - zero data collection</p>
+        <p><span class="emoji">💝</span>Optional in-app donations</p>
     </div>
     
-    <p><small>By TJDPoetry - The app includes optional donation support</small></p>
+    <p><small>By TJDPoetry - Built with love, not trackers</small></p>
 </body>
 </html>
