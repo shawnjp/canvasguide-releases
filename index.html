@@ -2,59 +2,202 @@
 <html>
 <head>
     <title>Download CanvasGuide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body { 
             font-family: Arial, sans-serif; 
             text-align: center; 
-            padding: 40px; 
+            padding: 20px; 
             background: #000; 
             color: white;
-            max-width: 600px;
-            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
+        
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+        }
+        
         .download-btn { 
             background: #8B5FBF; 
             color: white; 
-            padding: 20px 40px; 
+            padding: 18px 30px; 
             text-decoration: none; 
-            border-radius: 10px; 
+            border-radius: 12px; 
             display: inline-block; 
             margin: 20px 0;
-            font-size: 20px;
+            font-size: 18px;
             border: 2px solid #DA219F;
-            transition: transform 0.2s;
+            transition: all 0.3s;
+            width: 100%;
+            max-width: 300px;
         }
-        .download-btn:hover {
+        
+        .download-btn:hover, .download-btn:active {
             transform: scale(1.05);
+            background: #9B6BD4;
         }
+        
         .feature { 
             background: #1a1a1a; 
             padding: 20px; 
-            border-radius: 10px; 
+            border-radius: 12px; 
             margin: 20px 0;
             border: 1px solid #8B5FBF;
+            text-align: left;
         }
-        .emoji { font-size: 24px; margin-right: 10px; }
+        
+        .emoji { font-size: 20px; margin-right: 10px; }
+        
+        .warning {
+            background: #ff6b6b;
+            color: black;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        
+        .step {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: left;
+        }
+        
+        .step-number {
+            background: #8B5FBF;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        h2 { font-size: 1.5rem; margin: 20px 0 10px 0; }
+        h3 { font-size: 1.2rem; margin-bottom: 15px; }
+        
+        p { margin: 10px 0; line-height: 1.5; }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 480px) {
+            body { padding: 15px; }
+            .container { padding: 10px; }
+            h1 { font-size: 2rem; }
+            .download-btn { padding: 16px 25px; font-size: 16px; }
+            .feature { padding: 15px; }
+        }
     </style>
 </head>
 <body>
-    <h1>🎨 CanvasGuide</h1>
-    <p><em>Privacy-First Drawing Assistant</em></p>
-    
-    <a href="https://github.com/shawnjp/canvasguide-releases/releases/download/v1.0.0/CanvasGuide-v1.0.0.apk" 
-       class="download-btn"
-       download="CanvasGuide-v1.0.0.apk">
-        Download APK (v1.0.0)
-    </a>
-    
-    <div class="feature">
-        <h3>✨ Features</h3>
-        <p><span class="emoji">📷</span>Camera tracing with adjustable opacity</p>
-        <p><span class="emoji">🎯</span>Practice outlines & learning exercises</p>
-        <p><span class="emoji">🔒</span>100% offline - zero data collection</p>
-        <p><span class="emoji">💝</span>Optional in-app donations</p>
+    <div class="container">
+        <h1>🎨 CanvasGuide</h1>
+        <p><em>Privacy-First Drawing Assistant</em></p>
+        
+        <div class="warning">
+            <strong>⚠️ Important:</strong> Read installation steps below before downloading
+        </div>
+        
+        <!-- Download Button -->
+        <a href="https://github.com/shawnjp/canvasguide-releases/releases/download/v1.0.0/CanvasGuide-v1.0.0.apk" 
+           class="download-btn"
+           download="CanvasGuide-v1.0.0.apk">
+            📥 Download APK (v1.0.0)
+        </a>
+        
+        <div class="feature">
+            <h3>✨ Features</h3>
+            <p><span class="emoji">📷</span>Camera tracing with adjustable opacity</p>
+            <p><span class="emoji">🎯</span>Practice outlines & learning exercises</p>
+            <p><span class="emoji">🔒</span>100% offline - zero data collection</p>
+            <p><span class="emoji">💝</span>Optional in-app donations</p>
+        </div>
+
+        <!-- Mobile Installation Instructions -->
+        <div class="feature">
+            <h3>📱 Installation Guide (Android)</h3>
+            
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>Enable Unknown Sources</strong>
+                <p>Go to Settings → Security → Enable "Install from unknown sources"</p>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>Download the APK</strong>
+                <p>Tap the download button above. Your browser will download the file.</p>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>Find the Download</strong>
+                <p>Open your Files app → Downloads folder → Find "CanvasGuide-v1.0.0.apk"</p>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">4</span>
+                <strong>Install the App</strong>
+                <p>Tap the APK file → Tap "Install" → Wait for installation to complete</p>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">5</span>
+                <strong>Launch & Enjoy!</strong>
+                <p>Tap "Open" or find CanvasGuide in your app drawer</p>
+            </div>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="feature">
+            <h3>🔧 Troubleshooting</h3>
+            <p><strong>Download doesn't start?</strong> Try long-pressing the button and select "Download link"</p>
+            <p><strong>Can't find the file?</strong> Check your browser's downloads folder</p>
+            <p><strong>Installation blocked?</strong> Make sure "Unknown sources" is enabled in Settings</p>
+            <p><strong>Need help?</strong> Email: your-email@domain.com</p>
+        </div>
+        
+        <p><small>By TJDPoetry - Built with love, not trackers</small></p>
+        
+        <p style="margin-top: 20px;">
+            <a href="https://github.com/shawnjp/canvasguide-releases/releases" 
+               style="color: #8B5FBF; text-decoration: underline;">
+                View all releases on GitHub
+            </a>
+        </p>
     </div>
-    
-    <p><small>By TJDPoetry - Built with love, not trackers</small></p>
+
+    <script>
+        // Mobile-friendly enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click tracking for troubleshooting
+            const downloadBtn = document.querySelector('.download-btn');
+            downloadBtn.addEventListener('click', function() {
+                console.log('Download initiated - if this fails, check browser permissions');
+            });
+            
+            // Detect mobile devices
+            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                document.body.classList.add('mobile');
+            }
+        });
+    </script>
 </body>
 </html>
