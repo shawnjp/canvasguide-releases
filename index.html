@@ -2,13 +2,8 @@
 <html>
 <head>
     <title>CanvasGuide - Download</title>
-    <style>
-        body { font-family: Arial; text-align: center; padding: 40px; background: #000; color: white; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .btn { background: #8B5FBF; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; display: inline-block; margin: 10px; }
-        .section { background: #1a1a1a; padding: 20px; border-radius: 10px; margin: 20px 0; }
-        .testimonial { font-style: italic; color: #aaa; margin: 10px 0; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="container">
@@ -19,7 +14,7 @@
             <h3>Download via Donation</h3>
             <p>This app is 100% free, ad-free, and tracker-free. Your support makes this possible!</p>
             
-            <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+            <div class="donation-options">
                 <a href="https://ko-fi.com/tjdarling" class="btn">Donate $1+ & Download</a>
                 <a href="https://paypal.me/Tjdpoetry" class="btn">Donate via PayPal</a>
                 <a href="https://account.venmo.com/u/tjdpoetry" class="btn">Donate via Venmo</a>
@@ -30,25 +25,37 @@
 
         <div class="section">
             <h3>Features Include:</h3>
-            <p>📷 Camera tracing with opacity controls</p>
-            <p>🎯 Practice outlines for beginners</p>
-            <p>🔒 100% offline - zero data collection</p>
-            <p>💝 Your art stays on your device</p>
+            <div class="feature-list">
+                <p>📷 Camera tracing with opacity controls</p>
+                <p>🎯 Practice outlines for beginners</p>
+                <p>🔒 100% offline - zero data collection</p>
+                <p>💝 Your art stays on your device</p>
+                <p>🌈 Beautiful pride-themed design</p>
+                <p>🚫 No ads, no tracking, no accounts</p>
+            </div>
         </div>
 
         <div class="section">
-            <h3>Testimonials</h3>
-            <p class="testimonial">"Finally, a drawing app that respects my privacy!"</p>
-            <p class="testimonial">"The perfect tool for learning to draw"</p>
+            <h3>Why Donate?</h3>
+            <p>Your donation supports:</p>
+            <p>• Continued development & updates</p>
+            <p>• New features (practice outlines coming soon!)</p>
+            <p>• Maintaining our no-tracking promise</p>
+            <p>• Keeping the app 100% free for everyone</p>
+        </div>
+
+        <div class="section">
+            <h3>What Users Say</h3>
+            <p class="testimonial">"Finally, a drawing app that respects my privacy! Beautiful and functional."</p>
+            <p class="testimonial">"The perfect tool for learning to draw without any creepy tracking."</p>
+            <p class="testimonial">"TJDPoetry builds apps with heart and integrity. Worth supporting!"</p>
+        </div>
+        
+        <div class="section">
+            <h3>Ready to Start Drawing?</h3>
+            <p>Join hundreds of artists who've discovered the joy of privacy-first creativity!</p>
+            <a href="https://ko-fi.com/tjdarling" class="btn">Get CanvasGuide Now</a>
         </div>
     </div>
-
-    <script>
-        // Simple email capture (optional)
-        document.addEventListener('DOMContentLoaded', function() {
-            // You can add a simple email form here later
-            console.log('CanvasGuide download page loaded');
-        });
-    </script>
 </body>
 </html>
