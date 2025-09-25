@@ -120,6 +120,10 @@
             justify-content: center;
         }
         
+        #qrcode img {
+            border-radius: 4px;
+        }
+        
         .qr-instructions {
             font-size: 14px;
             margin-top: 10px;
@@ -159,6 +163,7 @@
             <p>Use your phone's camera to scan this QR code and download directly to your device</p>
             
             <div class="qr-container">
+                <!-- QR Code will be generated here -->
                 <div id="qrcode"></div>
             </div>
             
@@ -227,38 +232,33 @@
             </a>
         </p>
     </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Add click tracking for troubleshooting
-        const downloadBtn = document.querySelector('.download-btn');
-        downloadBtn.addEventListener('click', function() {
-            console.log('Download initiated - if this fails, check browser permissions');
-        });
-        
-        // Generate QR Code - SIMPLEST APPROACH
-        const downloadUrl = "https://github.com/shawnjp/canvasguide-releases/releases/download/v1.0.0/CanvasGuide-v1.0.0.apk";
-        const qrcodeElement = document.getElementById("qrcode");
-        
-        // Simple QR code generation
-        QRCode.toCanvas(downloadUrl, {
-            width: 200,
-            height: 200,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-        }, function(err, canvas) {
-            if (err) {
-                console.error("QR Code generation error:", err);
-                qrcodeElement.innerHTML = "<p style='color: white; padding: 10px;'>QR code unavailable. Please use the download button.</p>";
-            } else {
-                qrcodeElement.appendChild(canvas);
+
+    <script>
+        // Mobile-friendly enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click tracking for troubleshooting
+            const downloadBtn = document.querySelector('.download-btn');
+            downloadBtn.addEventListener('click', function() {
+                console.log('Download initiated - if this fails, check browser permissions');
+            });
+            
+            // Generate QR Code using the correct library
+            const downloadUrl = "https://github.com/shawnjp/canvasguide-releases/releases/download/v1.0.0/CanvasGuide-v1.0.0.apk";
+            
+            new QRCode(document.getElementById("qrcode"), {
+                text: downloadUrl,
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            // Detect mobile devices
+            if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                document.body.classList.add('mobile');
             }
         });
-        
-        // Detect mobile devices
-        if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            document.body.classList.add('mobile');
-        }
-    });
-</script>
+    </script>
 </body>
 </html>
