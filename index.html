@@ -5,29 +5,50 @@
     <style>
         body { font-family: Arial; text-align: center; padding: 40px; background: #000; color: white; }
         .container { max-width: 600px; margin: 0 auto; }
-        .download-btn { background: #8B5FBF; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; display: inline-block; margin: 10px; }
-        .donation-section { background: #1a1a1a; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .btn { background: #8B5FBF; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; display: inline-block; margin: 10px; }
+        .section { background: #1a1a1a; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .testimonial { font-style: italic; color: #aaa; margin: 10px 0; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>CanvasGuide 🎨</h1>
-        <p>Privacy-first drawing assistant by TJDPoetry</p>
+        <h1>🎨 CanvasGuide</h1>
+        <p>by TJDPoetry - Privacy-First Drawing Assistant</p>
         
-        <div class="donation-section">
-            <h3>Support Development</h3>
-            <p>This app is built with love, not trackers. Your donation helps keep it free!</p>
-            <a href="https://ko-fi.com/tjdarling" class="download-btn">Donate & Download APK</a>
-            <p><small>Suggested: $1 or more (any amount helps!)</small></p>
+        <div class="section">
+            <h3>Download via Donation</h3>
+            <p>This app is 100% free, ad-free, and tracker-free. Your support makes this possible!</p>
+            
+            <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+                <a href="https://ko-fi.com/tjdarling" class="btn">Donate $1+ & Download</a>
+                <a href="https://paypal.me/Tjdpoetry" class="btn">Donate via PayPal</a>
+                <a href="https://account.venmo.com/u/tjdpoetry" class="btn">Donate via Venmo</a>
+            </div>
+            
+            <p><small>After donating, you'll receive the APK download link automatically</small></p>
         </div>
 
-        <div style="margin-top: 40px;">
-            <h3>What You Get:</h3>
-            <p>✅ Camera tracing with adjustable opacity</p>
-            <p>✅ Practice outlines & shapes</p>
-            <p>✅ 100% offline - no data collection</p>
-            <p>✅ All future updates included</p>
+        <div class="section">
+            <h3>Features Include:</h3>
+            <p>📷 Camera tracing with opacity controls</p>
+            <p>🎯 Practice outlines for beginners</p>
+            <p>🔒 100% offline - zero data collection</p>
+            <p>💝 Your art stays on your device</p>
+        </div>
+
+        <div class="section">
+            <h3>Testimonials</h3>
+            <p class="testimonial">"Finally, a drawing app that respects my privacy!"</p>
+            <p class="testimonial">"The perfect tool for learning to draw"</p>
         </div>
     </div>
+
+    <script>
+        // Simple email capture (optional)
+        document.addEventListener('DOMContentLoaded', function() {
+            // You can add a simple email form here later
+            console.log('CanvasGuide download page loaded');
+        });
+    </script>
 </body>
 </html>
