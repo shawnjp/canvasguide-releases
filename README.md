@@ -22,4 +22,4 @@
 
 ---
 
-*By [TJDPoetry](https://github.com/tjdpoetry) - Built with love, not trackers*
+*By [TJDPoetry](https://shawnjp.github.io/canvasguide-releases/) - Built with love, not trackers*
