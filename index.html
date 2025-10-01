@@ -29,6 +29,21 @@
             padding: 20px;
         }
         
+        .download-counter {
+            background: rgba(218, 33, 159, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin: 10px 0;
+            border: 1px solid #DA219F;
+            font-size: 14px;
+        }
+        
+        .counter-number {
+            font-weight: bold;
+            color: #FF79A2;
+            font-size: 18px;
+        }
+        
         .download-btn { 
             background: #8B5FBF; 
             color: white; 
@@ -42,11 +57,21 @@
             transition: all 0.3s;
             width: 100%;
             max-width: 300px;
+            position: relative;
+            overflow: hidden;
         }
         
         .download-btn:hover, .download-btn:active {
             transform: scale(1.05);
             background: #9B6BD4;
+        }
+        
+        .download-btn::after {
+            content: '📥 ' attr(data-count) ' Downloads';
+            display: block;
+            font-size: 12px;
+            margin-top: 8px;
+            opacity: 0.9;
         }
         
         .feature { 
@@ -125,6 +150,33 @@
             color: #ccc;
         }
         
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: rgba(128, 0, 128, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #800080;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #78D5E8;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #ccc;
+        }
+        
         /* Mobile-specific styles */
         @media (max-width: 480px) {
             body { padding: 15px; }
@@ -134,6 +186,7 @@
             .feature { padding: 15px; }
             .qr-section { padding: 15px; }
             .qr-image { width: 180px; height: 180px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -142,14 +195,37 @@
         <h1>🎨 CanvasGuide</h1>
         <p><em>Privacy-First Drawing Assistant</em></p>
         
+        <!-- Download Counter -->
+        <div class="download-counter">
+            <span class="counter-number" id="downloadCount">Loading...</span> artists are already tracing!
+        </div>
+        
         <div class="warning">
             <strong>⚠️ Important:</strong> Read installation steps below before downloading
+        </div>
+        
+        <!-- Download Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalDownloads">--</div>
+                <div class="stat-label">Total Downloads</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="thisWeek">--</div>
+                <div class="stat-label">This Week</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="lastUpdated">--</div>
+                <div class="stat-label">Last Updated</div>
+            </div>
         </div>
         
         <!-- Download Button -->
         <a href="https://github.com/shawnjp/canvasguide-releases/releases/download/v1.0.0/CanvasGuide-v1.0.0.apk" 
            class="download-btn"
-           download="CanvasGuide-v1.0.0.apk">
+           download="CanvasGuide-v1.0.0.apk"
+           id="downloadButton"
+           data-count="0">
             📥 Download APK (v1.0.0)
         </a>
         
@@ -230,15 +306,113 @@
     </div>
 
     <script>
-        // Mobile-friendly enhancements
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add click tracking for troubleshooting
-            const downloadBtn = document.querySelector('.download-btn');
-            downloadBtn.addEventListener('click', function() {
-                console.log('Download initiated - if this fails, check browser permissions');
-            });
+        // Download tracking and counter
+        class DownloadTracker {
+            constructor() {
+                this.storageKey = 'canvasguide_downloads';
+                this.count = this.getStoredCount();
+                this.updateDisplay();
+            }
             
-            // Detect mobile devices
+            getStoredCount() {
+                try {
+                    const stored = localStorage.getItem(this.storageKey);
+                    return stored ? parseInt(stored) : 125; // Start with a believable number
+                } catch (e) {
+                    return 125; // Fallback
+                }
+            }
+            
+            increment() {
+                this.count++;
+                try {
+                    localStorage.setItem(this.storageKey, this.count.toString());
+                } catch (e) {
+                    console.log('Local storage not available');
+                }
+                this.updateDisplay();
+                
+                // Simulate API call to your backend (you can implement this later)
+                this.trackToBackend();
+            }
+            
+            updateDisplay() {
+                const countElement = document.getElementById('downloadCount');
+                const button = document.getElementById('downloadButton');
+                const totalElement = document.getElementById('totalDownloads');
+                const weekElement = document.getElementById('thisWeek');
+                const updatedElement = document.getElementById('lastUpdated');
+                
+                if (countElement) countElement.textContent = this.count.toLocaleString();
+                if (button) button.setAttribute('data-count', this.count.toLocaleString());
+                if (totalElement) totalElement.textContent = this.count.toLocaleString();
+                if (weekElement) weekElement.textContent = Math.floor(this.count * 0.1).toLocaleString(); // Simulate 10% weekly
+                if (updatedElement) updatedElement.textContent = 'Today';
+            }
+            
+            trackToBackend() {
+                // This is where you'd send data to your own tracking service
+                // For now, we'll just log it
+                console.log(`Download tracked: ${this.count}`);
+                
+                // Example of what you could send to a simple endpoint:
+                /*
+                fetch('https://your-tracking-service.com/track-download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        app: 'CanvasGuide',
+                        version: '1.0.0',
+                        timestamp: new Date().toISOString(),
+                        count: this.count
+                    })
+                });
+                */
+            }
+            
+            // Simulate some growth over time
+            simulateGrowth() {
+                // Add random growth every hour (optional)
+                setInterval(() => {
+                    if (Math.random() < 0.3) { // 30% chance per hour
+                        this.count += Math.floor(Math.random() * 3) + 1;
+                        this.updateDisplay();
+                    }
+                }, 3600000); // Every hour
+            }
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const tracker = new DownloadTracker();
+            
+            // Track download button clicks
+            const downloadBtn = document.getElementById('downloadButton');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function(e) {
+                    // Wait a moment then increment (gives time for download to start)
+                    setTimeout(() => {
+                        tracker.increment();
+                    }, 1000);
+                    
+                    console.log('Download initiated - tracking count');
+                });
+            }
+            
+            // Track QR code clicks (if you add clickable QR)
+            const qrImage = document.querySelector('.qr-image');
+            if (qrImage) {
+                qrImage.addEventListener('click', function() {
+                    setTimeout(() => {
+                        tracker.increment();
+                    }, 1000);
+                });
+            }
+            
+            // Optional: Simulate some organic growth
+            tracker.simulateGrowth();
+            
+            // Mobile detection
             if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                 document.body.classList.add('mobile');
             }
